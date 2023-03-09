@@ -1,10 +1,16 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { fetchData } from '../utils/fetchData';
+import Intro from '../components/Intro';
+import { fetchData } from '../utils/localStorage';
 
 export function dashboardLoader() {
   const username = fetchData('username');
+  console.log('username', username);
   return { username };
+}
+
+export async function dashboardAction({ request }: { request: Request }) {
+  console.log('대시보드 액션: ', request);
 }
 
 export default function Dashboard() {
@@ -12,9 +18,14 @@ export default function Dashboard() {
   console.log('username', username);
 
   return (
-    <div>
-      <h1>{username}</h1>
-      Dashboard
-    </div>
+    <>
+      {username ? (
+        <div>
+          <p>Welcome, {username}</p>
+        </div>
+      ) : (
+        <Intro />
+      )}
+    </>
   );
 }
