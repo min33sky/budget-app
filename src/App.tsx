@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { logoutAction } from './actions/logout';
 import Main, { mainLoader } from './layouts/Main';
@@ -30,6 +31,7 @@ function App() {
   return (
     <div>
       <RouterProvider router={router} />
+      <Toaster position="top-right" />
     </div>
   );
 }
