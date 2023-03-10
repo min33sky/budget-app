@@ -1,8 +1,10 @@
 import { UserPlusIcon } from '@heroicons/react/24/outline';
-import React from 'react';
 import { Form } from 'react-router-dom';
 import illustration from '../assets/illustration.jpg';
 
+/**
+ * 유저가 없을 때 보여주는 화면
+ */
 export default function Intro() {
   return (
     <div className="intro">
@@ -23,6 +25,10 @@ export default function Intro() {
             aria-label="What is your name?"
             autoComplete="given-name"
           />
+
+          {/* action handling */}
+          <input type="hidden" name="_action" value="newUser" />
+
           <button type="submit" className="btn btn--dark">
             <span>Create Account</span>
             <UserPlusIcon width={20} />

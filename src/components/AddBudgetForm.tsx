@@ -1,6 +1,9 @@
 import { CurrencyDollarIcon } from '@heroicons/react/24/solid';
 import { Form } from 'react-router-dom';
 
+/**
+ * 새로운 예산 작성 폼
+ */
 export default function AddBudgetForm() {
   return (
     <div className="form-wrapper">
@@ -28,6 +31,9 @@ export default function AddBudgetForm() {
             inputMode="decimal"
           />
         </div>
+
+        <input type="hidden" name="_action" value="createBudget" />
+
         <button type="submit" className="btn btn--dark">
           <span>Create budget</span>
           <CurrencyDollarIcon width={20} />
