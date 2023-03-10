@@ -20,7 +20,7 @@ export default function Nav({ username }: Props) {
           method="post"
           action="logout"
           onSubmit={(event) => {
-            if (!confirm('Delete user and all data?')) {
+            if (!window.confirm('Delete user and all data?')) {
               event.preventDefault();
             }
           }}
