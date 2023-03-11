@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import AddBudgetForm from '../components/AddBudgetForm';
 import Intro from '../components/Intro';
+import { delay } from '../utils/delay';
 import { createBudget, createUser, fetchData } from '../utils/localStorage';
 
 export function dashboardLoader() {
@@ -12,10 +13,10 @@ export function dashboardLoader() {
 }
 
 export async function dashboardAction({ request }: { request: Request }) {
+  await delay();
+
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
-
-  console.log('폼데이터: ', _action, values);
 
   if (_action === 'newUser') {
     try {
@@ -32,8 +33,6 @@ export async function dashboardAction({ request }: { request: Request }) {
 
       return toast.success(`Budget created!`);
     } catch (error: any) {
-      console.log('에러: ', error?.message);
-
       throw new Error(
         'There was a problem creating your budget. Please try again.',
       );
@@ -43,7 +42,6 @@ export async function dashboardAction({ request }: { request: Request }) {
 
 export default function Dashboard() {
   const { username } = useLoaderData() as { username: string };
-  console.log('username', username);
 
   return (
     <>
