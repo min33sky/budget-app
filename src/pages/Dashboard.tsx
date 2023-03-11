@@ -2,6 +2,7 @@ import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import AddBudgetForm from '../components/AddBudgetForm';
 import AddExpenseForm from '../components/AddExpenseForm';
+import BudgetItem from '../components/BudgetItem';
 import Intro from '../components/Intro';
 import { delay } from '../utils/delay';
 import {
@@ -77,6 +78,12 @@ export default function Dashboard() {
                 <div className="flex-lg">
                   <AddBudgetForm />
                   <AddExpenseForm budgets={budgets} />
+                </div>
+                <h2>Existing Budgets</h2>
+                <div className="budgets">
+                  {budgets.map((budget) => (
+                    <BudgetItem key={budget.id} budget={budget} />
+                  ))}
                 </div>
               </div>
             ) : (

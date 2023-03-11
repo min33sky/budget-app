@@ -7,12 +7,15 @@ interface Props {
   username: string;
 }
 
+/**
+ * NavBar
+ */
 export default function Nav({ username }: Props) {
   return (
     <nav>
       <NavLink to={'/'} title="Go to home">
         <img src={logomark} alt="" height={30} />
-        <span>HomeBudget</span>
+        <span>예산관리</span>
       </NavLink>
 
       {username && (
@@ -25,8 +28,13 @@ export default function Nav({ username }: Props) {
             }
           }}
         >
-          <button type="submit" className="btn btn--warning">
-            <span>Delete User</span>
+          <button
+            title="유저 정보 삭제"
+            aria-label="Delete User"
+            type="submit"
+            className="btn btn--warning"
+          >
+            <span>유저 정보 삭제</span>
             <TrashIcon width={20} />
           </button>
         </Form>
