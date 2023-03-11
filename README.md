@@ -1,12 +1,12 @@
 # Budget App
 
-> react-router-dom@6.8의 새로운 기능을 이용한 예산 관리 앱
+> react-router-dom@6.9의 새로운 기능을 이용한 예산 관리 앱
 
 ## Stack
 
 - React
 - Typescript
-- React Router@^6.8
+- React Router@^6.9
 
 ## Note
 
@@ -47,3 +47,7 @@ export async function dashboardAction({ request }: { request: Request }) {
   }
 }
 ```
+
+## Reference
+
+- [React Router v6.9](https://github.com/remix-run/react-router/releases/tag/react-router%406.9.0)
