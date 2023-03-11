@@ -15,4 +15,8 @@ export interface Budget {
 }
 
 export type FetchKeys = 'username' | 'budgets' | 'expenses';
-export type ActionType = 'newUser' | 'createBudget' | 'createExpense';
+export type ActionType =
+  | 'newUser'
+  | 'createBudget'
+  | 'createExpense'
+  | 'deleteExpense';

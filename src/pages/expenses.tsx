@@ -1,13 +1,36 @@
+import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import Table from '../components/Table';
-import { Expense } from '../types';
-import { fetchData } from '../utils/localStorage';
+import { ActionType, Expense } from '../types';
+import { delay } from '../utils/delay';
+import { deleteItem, fetchData } from '../utils/localStorage';
 
-export function expensesLoader() {
+export async function expensesLoader() {
   const expenses = fetchData('expenses');
   return {
     expenses,
   };
+}
+
+export async function expensesAction({ request }: { request: Request }) {
+  await delay();
+
+  const data = await request.formData();
+  const { _action, ...values } = Object.fromEntries(data) as {
+    _action: ActionType;
+    [key: string]: string;
+  };
+
+  if (_action === 'deleteExpense') {
+    try {
+      deleteItem('expenses', values.expenseId);
+      return toast.success(`지출 삭제 완료!`);
+    } catch (error: any) {
+      throw new Error(
+        'There was a problem deleting your expense. Please try again.',
+      );
+    }
+  }
 }
 
 export default function ExpensesPage() {

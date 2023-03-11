@@ -60,6 +60,37 @@ export function createExpense({
   );
 }
 
-export function deleteItem(key: FetchKeys) {
+/**
+ * 로컬스토리지의 데이터 삭제
+ * - 아이디가 있으면 해당 아이템만 삭제
+ * - 아이디가 없으면 해당 키값의 데이터 전체 삭제
+ * @param key 삭제할 키값
+ * @param id 삭제할 아이템의 id
+ */
+export function deleteItem(key: FetchKeys, id?: string) {
+  const existingItems = fetchData(key) ?? [];
+
+  if (id) {
+    const filteredItems = existingItems.filter((item: any) => item.id !== id);
+    return localStorage.setItem(key, JSON.stringify(filteredItems));
+  }
+
   localStorage.removeItem(key);
+}
+
+/**
+ * 매칭되는 아이템을 모두 가져오는 함수
+ */
+export function getAllMatchingItems({
+  category,
+  key,
+  value,
+}: {
+  category: FetchKeys;
+  key: string;
+  value: any;
+}): any[] {
+  const existingItems = fetchData(category) ?? [];
+
+  return existingItems.filter((item: any) => item[key] === value);
 }

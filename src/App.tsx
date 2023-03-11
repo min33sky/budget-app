@@ -7,7 +7,7 @@ import DashboardPage, {
   dashboardAction,
 } from './pages/Dashboard';
 import ErrorPage from './pages/Error';
-import ExpensesPage, { expensesLoader } from './pages/Expenses';
+import ExpensesPage, { expensesAction, expensesLoader } from './pages/Expenses';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +31,7 @@ const router = createBrowserRouter([
         path: 'expenses',
         Component: ExpensesPage,
         loader: expensesLoader,
+        action: expensesAction,
       },
       {
         path: 'logout',

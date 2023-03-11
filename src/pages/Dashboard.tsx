@@ -11,6 +11,7 @@ import {
   createBudget,
   createExpense,
   createUser,
+  deleteItem,
   fetchData,
 } from '../utils/localStorage';
 
@@ -68,6 +69,15 @@ export async function dashboardAction({ request }: { request: Request }) {
     } catch (error: any) {
       throw new Error(
         'There was a problem creating your expense. Please try again.',
+      );
+    }
+  } else if (_action === 'deleteExpense') {
+    try {
+      deleteItem('expenses', values.expenseId);
+      return toast.success(`지출 삭제 완료!`);
+    } catch (error: any) {
+      throw new Error(
+        'There was a problem deleting your expense. Please try again.',
       );
     }
   }

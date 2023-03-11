@@ -12,7 +12,7 @@ export default function Table({ expenses }: Props) {
       <table>
         <thead>
           <tr>
-            {['내용', '금액', '날짜'].map((item, index) => {
+            {['내용', '금액', '날짜', '분류', '삭제'].map((item, index) => {
               return <th key={index}>{item}</th>;
             })}
           </tr>
