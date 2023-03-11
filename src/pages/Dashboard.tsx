@@ -4,6 +4,8 @@ import AddBudgetForm from '../components/AddBudgetForm';
 import AddExpenseForm from '../components/AddExpenseForm';
 import BudgetItem from '../components/BudgetItem';
 import Intro from '../components/Intro';
+import Table from '../components/Table';
+import { ActionType, Budget, Expense } from '../types';
 import { delay } from '../utils/delay';
 import {
   createBudget,
@@ -12,17 +14,30 @@ import {
   fetchData,
 } from '../utils/localStorage';
 
+/**
+ * DashboardLoader is a function that returns data that will be passed to the
+ * Dashboard component as props. This function is called on the server before
+ * rendering the component.
+ */
 export function dashboardLoader() {
   const username = fetchData('username');
   const budgets = fetchData('budgets');
-  return { username, budgets };
+  const expenses = fetchData('expenses');
+  return { username, budgets, expenses };
 }
 
+/**
+ * dashboardAction is a function that handles form submissions from the Dashboard
+ * component. This function is called on the server before rendering the component.
+ */
 export async function dashboardAction({ request }: { request: Request }) {
   await delay();
 
   const data = await request.formData();
-  const { _action, ...values } = Object.fromEntries(data);
+  const { _action, ...values } = Object.fromEntries(data) as {
+    _action: ActionType;
+    [key: string]: string;
+  };
 
   if (_action === 'newUser') {
     try {
@@ -35,10 +50,9 @@ export async function dashboardAction({ request }: { request: Request }) {
     }
   } else if (_action === 'createBudget') {
     try {
-      createBudget(values.newBudget, +values.newBudgetAmount);
-
+      createBudget(values.newBudget.toString(), +values.newBudgetAmount);
       return toast.success(`예산 생성 완료!`);
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(
         'There was a problem creating your budget. Please try again.',
       );
@@ -60,9 +74,10 @@ export async function dashboardAction({ request }: { request: Request }) {
 }
 
 export default function Dashboard() {
-  const { username, budgets } = useLoaderData() as {
+  const { username, budgets, expenses } = useLoaderData() as {
     username: string;
-    budgets: any[];
+    budgets: Budget[];
+    expenses: Expense[];
   };
 
   return (
@@ -72,6 +87,7 @@ export default function Dashboard() {
           <h1>
             환영합니다, <span className="accent">{username}</span>
           </h1>
+
           <div className="grid-sm">
             {budgets && budgets.length > 0 ? (
               <div className="grid-lg">
@@ -95,6 +111,15 @@ export default function Dashboard() {
               </div>
             )}
           </div>
+
+          {expenses && expenses.length > 0 && (
+            <div className="grid-md">
+              <h2>최근 지출액</h2>
+              <Table
+                expenses={expenses.sort((a, b) => b.createdAt - a.createdAt)}
+              />
+            </div>
+          )}
         </div>
       ) : (
         <Intro />

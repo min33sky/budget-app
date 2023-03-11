@@ -13,3 +13,6 @@ export interface Budget {
   amount: number;
   color: string;
 }
+
+export type FetchKeys = 'username' | 'budgets' | 'expenses';
+export type ActionType = 'newUser' | 'createBudget' | 'createExpense';

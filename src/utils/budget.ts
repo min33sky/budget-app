@@ -29,3 +29,12 @@ export function formatCurrency(amt: number) {
     currency: 'KRW',
   });
 }
+
+export function formatDateToLocaleString(date: number) {
+  // return new Date(date).toLocaleString('ko-KR');
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
+}

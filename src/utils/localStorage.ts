@@ -1,10 +1,11 @@
+import { FetchKeys } from '../types';
 import { generateRandomColor } from './generateRandomColor';
 
 /**
  * 로컬스토리지에서 데이터를 가져오는 함수
  * @param key 로컬 스토리지의 키값
  */
-export function fetchData(key: string) {
+export function fetchData(key: FetchKeys) {
   return JSON.parse(localStorage.getItem(key) as any);
 }
 
@@ -12,10 +13,12 @@ export function createUser(username: string) {
   localStorage.setItem('username', JSON.stringify(username));
 }
 
-export function createBudget(
-  name: string | FormDataEntryValue,
-  amount: number,
-) {
+/**
+ * 예산 생성 함수
+ * @param name 예산 이름
+ * @param amount 금액
+ */
+export function createBudget(name: string, amount: number) {
   const newItem = {
     id: crypto.randomUUID(),
     name,
@@ -57,6 +60,6 @@ export function createExpense({
   );
 }
 
-export function deleteItem(key: string) {
+export function deleteItem(key: FetchKeys) {
   localStorage.removeItem(key);
 }
