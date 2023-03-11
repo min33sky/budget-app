@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { useFetcher } from 'react-router-dom';
 import { PlusCircleIcon } from '@heroicons/react/24/solid';
+import { Budget } from '../types';
 
 interface Props {
-  budgets: any[];
+  budgets: Budget[];
 }
 
 export default function AddExpenseForm({ budgets }: Props) {
@@ -22,17 +23,16 @@ export default function AddExpenseForm({ budgets }: Props) {
   return (
     <div className="form-wrapper">
       <h2 className="h3">
-        Add New{' '}
+        지출 내역 추가하기{' '}
         <span>
-          {budgets.length === 1 && `${budgets.map((budg) => budg.name)}`}
-        </span>{' '}
-        Expense
+          - {budgets.length === 1 && `${budgets.map((budg) => budg.name)}`}
+        </span>
       </h2>
 
       <fetcher.Form ref={formRef} method="post" className="grid-sm">
         <div className="expense-inputs">
           <div className="grid-xs">
-            <label htmlFor="newExpense">Expense Name</label>
+            <label htmlFor="newExpense">지출 이름</label>
             <input
               type="text"
               name="newExpense"
@@ -43,7 +43,7 @@ export default function AddExpenseForm({ budgets }: Props) {
             />
           </div>
           <div className="grid-xs">
-            <label htmlFor="newExpenseAmount">Amount</label>
+            <label htmlFor="newExpenseAmount">금액</label>
             <input
               type="number"
               step="0.01"
@@ -57,7 +57,7 @@ export default function AddExpenseForm({ budgets }: Props) {
         </div>
 
         <div className="grid-xs" hidden={budgets.length === 1}>
-          <label htmlFor="newExpenseBudget">Budget Category</label>
+          <label htmlFor="newExpenseBudget">예산 카테고리</label>
           <select name="newExpenseBudget" id="newExpenseBudget" required>
             {budgets
               .sort((a, b) => a.createdAt - b.createdAt)
@@ -73,10 +73,10 @@ export default function AddExpenseForm({ budgets }: Props) {
         <input type="hidden" name="_action" value="createExpense" />
         <button type="submit" className="btn btn--dark" disabled={isSubmitting}>
           {isSubmitting ? (
-            <span>Submitting…</span>
+            <span>처리중... 🚀</span>
           ) : (
             <>
-              <span>Add Expense</span>
+              <span>지출 추가하기</span>
               <PlusCircleIcon width={20} />
             </>
           )}

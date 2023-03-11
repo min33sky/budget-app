@@ -20,28 +20,28 @@ export default function AddBudgetForm() {
 
   return (
     <div className="form-wrapper">
-      <h2 className="h3">Create a new budget</h2>
+      <h2 className="h3">새로운 예산을 작성하세요</h2>
 
       <fetcher.Form ref={formRef} method="post" className="grid-sm">
         <div className="grid-xs">
-          <label htmlFor="newBudget">Budget Name</label>
+          <label htmlFor="newBudget">예산 이름</label>
           <input
             ref={focusRef}
             type="text"
             name="newBudget"
             id="newBudget"
-            placeholder="e.g. Groceries"
+            placeholder="예) 식료품비"
             required
           />
         </div>
         <div className="grid-xs">
-          <label htmlFor="newBudgetAmount">Amount</label>
+          <label htmlFor="newBudgetAmount">금액</label>
           <input
             type="number"
             step="0.01"
             name="newBudgetAmount"
             id="newBudgetAmount"
-            placeholder="e.g., $350"
+            placeholder="예) ₩30000"
             required
             inputMode="decimal"
           />
@@ -54,7 +54,7 @@ export default function AddBudgetForm() {
             <span>처리중...🚀</span>
           ) : (
             <>
-              <span>Create budget</span>
+              <span>생성하기</span>
               <CurrencyDollarIcon width={20} />
             </>
           )}

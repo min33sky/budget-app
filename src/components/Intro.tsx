@@ -10,18 +10,15 @@ export default function Intro() {
     <div className="intro">
       <div>
         <h1>
-          Take Control of <span className="accent">Your Money</span>
+          <span className="accent">재산</span>을 관리하세요
         </h1>
-        <p>
-          Personal budgeting is the secret to financial freedom. Start your
-          journey today.
-        </p>
+        <p>지금 당장 시작해!!</p>
         <Form method="post">
           <input
             type="text"
             name="username"
             required
-            placeholder="What is your name?"
+            placeholder="이름을 적어주세요"
             aria-label="What is your name?"
             autoComplete="given-name"
           />
@@ -30,7 +27,7 @@ export default function Intro() {
           <input type="hidden" name="_action" value="newUser" />
 
           <button type="submit" className="btn btn--dark">
-            <span>Create Account</span>
+            <span>계정 생성하기</span>
             <UserPlusIcon width={20} />
           </button>
         </Form>

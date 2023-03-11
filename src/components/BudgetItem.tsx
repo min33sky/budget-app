@@ -25,7 +25,7 @@ export default function BudgetItem({
     >
       <div className="progress-text">
         <h3>{name}</h3>
-        <p>{formatCurrency(amount)} 총 예산</p>
+        <p>{formatCurrency(amount)}</p>
       </div>
       <progress value={spent} max={amount}>
         {formatPercentage(spent / amount)}

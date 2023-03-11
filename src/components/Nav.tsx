@@ -15,7 +15,7 @@ export default function Nav({ username }: Props) {
     <nav>
       <NavLink to={'/'} title="Go to home">
         <img src={logomark} alt="" height={30} />
-        <span>예산관리</span>
+        <span>나의 예산</span>
       </NavLink>
 
       {username && (
@@ -29,12 +29,12 @@ export default function Nav({ username }: Props) {
           }}
         >
           <button
-            title="유저 정보 삭제"
+            title="유저 삭제"
             aria-label="Delete User"
             type="submit"
             className="btn btn--warning"
           >
-            <span>유저 정보 삭제</span>
+            <span>유저 삭제</span>
             <TrashIcon width={20} />
           </button>
         </Form>

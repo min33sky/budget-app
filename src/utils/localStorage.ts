@@ -8,7 +8,7 @@ export function fetchData(key: string) {
   return JSON.parse(localStorage.getItem(key) as any);
 }
 
-export function createUser(username: string | FormDataEntryValue) {
+export function createUser(username: string) {
   localStorage.setItem('username', JSON.stringify(username));
 }
 

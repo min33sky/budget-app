@@ -26,8 +26,8 @@ export async function dashboardAction({ request }: { request: Request }) {
 
   if (_action === 'newUser') {
     try {
-      createUser(values.username);
-      return toast.success(`Welcome ${values.username}!`);
+      createUser(values.username.toString());
+      return toast.success(`환영합니다. ${values.username}!`);
     } catch (error) {
       throw new Error(
         'There was a problem creating your account. Please try again.',
@@ -37,7 +37,7 @@ export async function dashboardAction({ request }: { request: Request }) {
     try {
       createBudget(values.newBudget, +values.newBudgetAmount);
 
-      return toast.success(`Budget created!`);
+      return toast.success(`예산 생성 완료!`);
     } catch (error: any) {
       throw new Error(
         'There was a problem creating your budget. Please try again.',
@@ -50,7 +50,7 @@ export async function dashboardAction({ request }: { request: Request }) {
         amount: +values.newExpenseAmount.toString(),
         budgetId: values.newExpenseBudget.toString(),
       });
-      return toast.success(`Expense ${values.newExpense} created!`);
+      return toast.success(`${values.newExpense} 지출 추가!`);
     } catch (error: any) {
       throw new Error(
         'There was a problem creating your expense. Please try again.',
@@ -70,7 +70,7 @@ export default function Dashboard() {
       {username ? (
         <div className="dashboard">
           <h1>
-            Welcome back, <span className="accent">{username}</span>
+            환영합니다, <span className="accent">{username}</span>
           </h1>
           <div className="grid-sm">
             {budgets && budgets.length > 0 ? (
@@ -79,7 +79,9 @@ export default function Dashboard() {
                   <AddBudgetForm />
                   <AddExpenseForm budgets={budgets} />
                 </div>
-                <h2>Existing Budgets</h2>
+
+                <h2>기존 예산</h2>
+
                 <div className="budgets">
                   {budgets.map((budget) => (
                     <BudgetItem key={budget.id} budget={budget} />
@@ -88,8 +90,7 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="grid-sm">
-                <p>Personal budgeting is the secret to financial freedom.</p>
-                <p>Create a budget to get started!</p>
+                <p>시작!!</p>
                 <AddBudgetForm />
               </div>
             )}
