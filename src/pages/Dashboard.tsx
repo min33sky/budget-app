@@ -73,7 +73,7 @@ export async function dashboardAction({ request }: { request: Request }) {
   }
 }
 
-export default function Dashboard() {
+export default function DashboardPage() {
   const { username, budgets, expenses } = useLoaderData() as {
     username: string;
     budgets: Budget[];
