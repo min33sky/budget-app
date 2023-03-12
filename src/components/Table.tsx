@@ -4,17 +4,20 @@ import ExpenseItem from './ExpenseItem';
 
 interface Props {
   expenses: Expense[];
+  showBudget?: boolean;
 }
 
-export default function Table({ expenses }: Props) {
+export default function Table({ expenses, showBudget = true }: Props) {
   return (
     <div className="table">
       <table>
         <thead>
           <tr>
-            {['내용', '금액', '날짜', '분류', '삭제'].map((item, index) => {
-              return <th key={index}>{item}</th>;
-            })}
+            {['내용', '금액', '날짜', showBudget ? '예산' : ''].map(
+              (item, index) => {
+                return <th key={index}>{item}</th>;
+              },
+            )}
           </tr>
         </thead>
         <tbody>

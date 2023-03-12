@@ -89,7 +89,7 @@ export function getAllMatchingItems({
   category: FetchKeys;
   key: string;
   value: any;
-}): any[] {
+}) {
   const existingItems = fetchData(category) ?? [];
 
   return existingItems.filter((item: any) => item[key] === value);

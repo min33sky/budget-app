@@ -6,6 +6,7 @@ import { getAllMatchingItems } from '../utils/localStorage';
 
 interface Props {
   expense: Expense;
+  showBudget?: boolean;
 }
 
 /**
@@ -13,6 +14,7 @@ interface Props {
  */
 export default function ExpenseItem({
   expense: { name, amount, createdAt, budgetId, id },
+  showBudget,
 }: Props) {
   const fetcher = useFetcher();
 
@@ -27,18 +29,20 @@ export default function ExpenseItem({
       <td>{name}</td>
       <td>{formatCurrency(amount)}</td>
       <td>{formatDateToLocaleString(createdAt)}</td>
-      <td>
-        <Link
-          to={`/budget/${budget.id}`}
-          style={
-            {
-              '--accent': budget.color,
-            } as any
-          }
-        >
-          {budget.name}
-        </Link>
-      </td>
+      {showBudget && (
+        <td>
+          <Link
+            to={`/budget/${budget.id}`}
+            style={
+              {
+                '--accent': budget.color,
+              } as any
+            }
+          >
+            {budget.name}
+          </Link>
+        </td>
+      )}
       <td>
         <fetcher.Form method="post">
           <input type="hidden" name="_action" value="deleteExpense" />
