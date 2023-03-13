@@ -16,25 +16,34 @@ export function calculateSpentByBudget(budgetId: string) {
   return budgetSpent;
 }
 
-export function formatPercentage(amt: number) {
-  return amt.toLocaleString('ko-KR', {
+export function formatPercentage(amount: number) {
+  return amount.toLocaleString('ko-KR', {
     style: 'percent',
     minimumFractionDigits: 0,
   });
 }
 
-export function formatCurrency(amt: number) {
-  return amt.toLocaleString('ko-KR', {
+export function formatCurrency(amount: number) {
+  return amount.toLocaleString('ko-KR', {
     style: 'currency',
     currency: 'KRW',
   });
 }
 
 export function formatDateToLocaleString(date: number) {
-  // return new Date(date).toLocaleString('ko-KR');
+  // return new Date(date).toLocaleString('ko-KR', {
+  //   year: 'numeric',
+  //   month: 'long',
+  //   day: 'numeric',
+  // });
   return new Intl.DateTimeFormat('ko-KR', {
-    year: 'numeric',
+    year: '2-digit',
     month: 'long',
     day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+    timeZone: 'Asia/Seoul',
   }).format(date);
 }

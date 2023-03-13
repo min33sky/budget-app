@@ -24,7 +24,7 @@ export default function Table({ expenses, showBudget = true }: Props) {
           {expenses.map((expense) => {
             return (
               <tr key={expense.id}>
-                <ExpenseItem expense={expense} />
+                <ExpenseItem expense={expense} showBudget={showBudget} />
               </tr>
             );
           })}

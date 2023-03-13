@@ -6,7 +6,7 @@ import { generateRandomColor } from './generateRandomColor';
  * @param key 로컬 스토리지의 키값
  */
 export function fetchData(key: FetchKeys) {
-  return JSON.parse(localStorage.getItem(key) as any);
+  return JSON.parse(localStorage.getItem(key) ?? '[]');
 }
 
 export function createUser(username: string) {

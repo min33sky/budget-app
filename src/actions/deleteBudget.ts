@@ -4,6 +4,8 @@ import { Expense } from '../types';
 import { deleteItem, getAllMatchingItems } from '../utils/localStorage';
 
 export function deleteBudget({ params }: { params: any }) {
+  console.log('deleteBudget params: ', params);
+
   // 1. 예산 삭제
   // 2. 지출 내역중에 삭제한 예산과 관련한 지출 내역 모두 삭제
 

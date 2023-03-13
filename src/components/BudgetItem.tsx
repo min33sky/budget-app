@@ -29,7 +29,7 @@ export default function BudgetItem({
     >
       <div className="progress-text">
         <h3>{name}</h3>
-        <p>{formatCurrency(amount)} Budgeted </p>
+        <p>{formatCurrency(amount)}</p>
       </div>
 
       <progress value={spent} max={amount}>
@@ -57,7 +57,7 @@ export default function BudgetItem({
             }}
           >
             <button type="submit" className="btn">
-              <span>Delete Budget</span>
+              <span>예산 삭제</span>
               <TrashIcon width={20} />
             </button>
           </Form>
@@ -65,7 +65,7 @@ export default function BudgetItem({
       ) : (
         <div className="flex-sm">
           <Link to={`/budget/${id}`} className="btn">
-            <span>View Details</span>
+            <span>자세히</span>
             <BanknotesIcon width={20} />
           </Link>
         </div>
