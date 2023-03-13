@@ -2,7 +2,7 @@ import { Expense } from '../types';
 import { fetchData } from './localStorage';
 
 /**
- * 예산에 소비된 금액을 계산하는 함수
+ * 해당 예산에 소비된 금액을 계산하는 함수
  * @param budgetId 예산 아이디
  */
 export function calculateSpentByBudget(budgetId: string) {
